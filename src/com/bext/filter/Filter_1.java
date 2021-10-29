@@ -10,6 +10,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 public class Filter_1 implements Filter {
 
@@ -29,6 +30,7 @@ public class Filter_1 implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+	   String name = "";
 	   response.setContentType("text/html");
 	   PrintWriter out = response.getWriter();
 	   out.println("<b>Filter_1</b> <br/>InitParam: " + filterConfig.getInitParameter("Filter_1_InitParam"));
@@ -36,7 +38,7 @@ public class Filter_1 implements Filter {
 	   Enumeration<String> parameterNames = request.getParameterNames();
 	   if (parameterNames.hasMoreElements()) {
 		   while (parameterNames.hasMoreElements()) {
-			   String name = parameterNames.nextElement();
+			   name = parameterNames.nextElement();
 			   String value = request.getParameter(name);
 			   out.println("Param Name: " + name + ", Value: " + value + "<br/>");
 		   }
